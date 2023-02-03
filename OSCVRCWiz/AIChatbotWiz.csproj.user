@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
+  <ItemGroup>
+    <Compile Update="RJControls\CustomRTB.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="RJControls\RJToggleButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="RJControls\TranslucentPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="Text\GreenScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="VoiceWizardWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+</Project>
