@@ -36,11 +36,11 @@ namespace OSCVRCWiz
 
     public partial class VoiceWizardWindow : Form
     {
-        public static string currentVersion = "0.9.8.3";
-        string releaseDate = "January 26, 2023";
+        public static string currentVersion = "0.9.8.4";
+        string releaseDate = "February 4, 2023";
         string versionBuild = "x64"; //update when converting to x86/x64
         //string versionBuild = "x86"; //update when converting to x86/x64
-        string updateXMLName = "https://github.com/VRCWizard/TTS-Voice-Wizard/releases/latest/download/AutoUpdater-x64.xml"; //update when converting to x86/x64
+        string updateXMLName = "https://github.com/VRCWizard/HecateAI/releases/latest/download/AutoUpdater-x64.xml"; //update when converting to x86/x64
       //  string updateXMLName = "https://github.com/VRCWizard/TTS-Voice-Wizard/releases/latest/download/AutoUpdater-x86.xml"; //update when converting to x86/x64
         //update build
 
@@ -568,16 +568,27 @@ namespace OSCVRCWiz
                 OutputText.outputLog("[No Azure Key detected, defaulting to Windows Built-In System Speech. Add you Azure Key in the 'Settings > Microsoft Azure Cognative Service' tab or enable Windows Built-In System Speech from 'Settings > Audio Settings'.]");
                 }
                 Task.Run(() => VoiceCommands.MainDoVoiceCommand(text));
-                 if (rjToggleReplaceBeforeTTS.Checked == true)
+
+
+
+            //AI
+            //   String test = text;
+            Request r = new Request(text, myUser, myBot);
+            Result res = myBot.Chat(r);
+            text = res.Output.ToString();
+           
+           // Debug.WriteLine("AI Text: " + text);
+
+
+
+
+            if (rjToggleReplaceBeforeTTS.Checked == true)
                  {
                 text = WordReplacements.MainDoWordReplacement(text);
                   }
 
-            //AI
-         //   String test = text;
-           Request r = new Request(text, myUser, myBot);
-            Result res = myBot.Chat(r);
-            text = res.Output;
+         
+            
 
 
             var writeText = text;
