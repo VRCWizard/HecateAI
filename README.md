@@ -14,7 +14,7 @@ You would download the code, edit the paths and then make changes such as the in
 
 Don't forget you can use TTS Voice Wizard's word replacements and voice commands with your chatbot.
 
-Ediquite: If you do use this project credit would be apprecited, although the current lisence is the only requiremnt to follow. You can just say "implementation via modified version of TTS Voice Wizard" or something of that sort.
+Etiquette: If you do use this project credit would be apprecited, although the current lisence is the only requiremnt to follow. You can just say "implementation via modified version of TTS Voice Wizard" or something of that sort.
 
 
 
