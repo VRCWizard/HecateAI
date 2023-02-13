@@ -10,7 +10,7 @@ the aiml folder and config folder that includes the "Settings.xml" are both incl
 
 
 ## Credits
--[AIMLBot](https://github.com/nicholi/AIMLBot)
+- [AIMLBot](https://github.com/nicholi/AIMLBot)
 
 - [CoreOSC](https://github.com/dastevens/CoreOSC) - Sending / recieving OSC data (modified for sending UTF8)
 - [octokit.net](https://github.com/octokit/octokit.net) - Github Update Notifier
