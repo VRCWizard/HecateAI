@@ -180,10 +180,10 @@ namespace OSCVRCWiz
         }
         public void Initialize()
         {
-          //  myBot.loadSettings();
-          myBot.loadSettings(@"C:\Users\bdw10\OneDrive\Desktop\AI Chatbot\TTS-Voice-Wizard-main (2)\TTS-Voice-Wizard-main\OSCVRCWiz\bin\Debug\net6.0-windows10.0.22000.0\config\Settings.xml", @"C:\Users\bdw10\OneDrive\Desktop\AI Chatbot\TTS-Voice-Wizard-main (2)\TTS-Voice-Wizard-main\OSCVRCWiz\bin\Debug\net6.0-windows10.0.22000.0\config");
+          //THIS IS WHERE YOU WOULD INITIALIZE YOUR AI CHATBOT \\TODO add paths if using aimlbot
+          myBot.loadSettings(@"PATH TO \Settings.xml", @"path to\config");
             myBot.isAcceptingUserInput = false;
-            myBot.loadAIMLFromFiles(@"C:\Users\bdw10\OneDrive\Desktop\AI Chatbot\TTS-Voice-Wizard-main (2)\TTS-Voice-Wizard-main\OSCVRCWiz\bin\Debug\net6.0-windows10.0.22000.0\aiml");
+            myBot.loadAIMLFromFiles(@"Path to \aiml");
             myBot.isAcceptingUserInput = true;
         }
         private void hideVRCTextButton_Click(object sender, EventArgs e)//speech to text
@@ -571,13 +571,13 @@ namespace OSCVRCWiz
 
 
 
-            //AI
+            ////THIS IS WHERE YOU WOULD SEND A REQUEST TO YOUR AI CHATBOT AND REPLACE TEXT WITH THE RESPONSE \\TODO make request to chatbot (you would edit this if not using aimlbot)
             //   String test = text;
             Request r = new Request(text, myUser, myBot);
             Result res = myBot.Chat(r);
             text = res.Output.ToString();
            
-           // Debug.WriteLine("AI Text: " + text);
+         ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
