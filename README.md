@@ -12,14 +12,14 @@ The aiml folder and config folder that includes the "Settings.xml" are both incl
 
 You would download the code, edit the paths and then make changes such as the input and output device would probably both be virtual cables if you want to listen to a game and output tts audio based on the recieved audio.
 
-don't forget you can use TTS Voice Wizard's word replacements and voice commands with your chatbot.
+Don't forget you can use TTS Voice Wizard's word replacements and voice commands with your chatbot.
 
+Ediquite: If you do use this project credit would be apprecited, although the current lisence is the only requiremnt to follow. You can just say "implementation via modified version of TTS Voice Wizard" or something of that sort.
 
 
 
 ## Credits
 - [AIMLBot](https://github.com/VRCWizard/AIMLBot) - a modified version of aimlbot is used within this project to fix the "path" issue
-
 - [CoreOSC](https://github.com/VRCWizard/CoreOSC-VRC-UTF8) - Sending / recieving OSC data (modified for sending UTF8)
 - [octokit.net](https://github.com/octokit/octokit.net) - Github Update Notifier
 - [AutoUpdater.NET](https://github.com/ravibpatel/AutoUpdater.NET) - Auto Updater for .NET applications
