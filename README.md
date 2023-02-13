@@ -10,9 +10,9 @@ the aiml folder and config folder that includes the "Settings.xml" are both incl
 
 
 ## Credits
-- [AIMLBot](https://github.com/nicholi/AIMLBot)
+- [AIMLBot](https://github.com/VRCWizard/AIMLBot) - a modified version of aimlbot is used within this project to fix the "path" issue
 
-- [CoreOSC](https://github.com/dastevens/CoreOSC) - Sending / recieving OSC data (modified for sending UTF8)
+- [CoreOSC](https://github.com/VRCWizard/CoreOSC-VRC-UTF8) - Sending / recieving OSC data (modified for sending UTF8)
 - [octokit.net](https://github.com/octokit/octokit.net) - Github Update Notifier
 - [AutoUpdater.NET](https://github.com/ravibpatel/AutoUpdater.NET) - Auto Updater for .NET applications
 - [Sharptalk](https://github.com/whatsecretproject/SharpTalk) - .NET wrapper for the FonixTalk TTS engine.
