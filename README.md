@@ -7,7 +7,12 @@ I recommend vosk for voice recognition, and tiktok api for tts.
 You will have to edit the paths for initializing the bot in VoiceWizardWindow.cs just search for "TODO"
 ![image](https://user-images.githubusercontent.com/101527472/218574544-7e75b08e-d400-4590-82c6-069cf25c8837.png)
 
-the aiml folder and config folder that includes the "Settings.xml" are both included with this project.
+The aiml folder and config folder that includes the "Settings.xml" are both included with this project.
+
+
+You would download the code, edit the paths and then make changes such as the input and output device would probably both be virtual cables if you want to listen to a game and output tts audio based on the recieved audio.
+
+don't forget you can use TTS Voice Wizard's word replacements and voice commands with your chatbot.
 
 
 
