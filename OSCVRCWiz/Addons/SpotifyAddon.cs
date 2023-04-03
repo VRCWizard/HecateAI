@@ -5,10 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using SpotifyAPI.Web.Auth;
 using SpotifyAPI.Web;
-using AIChatbotWiz.Settings;
+using OSCVRCWiz.Settings;
 using System.Diagnostics;
 using OSCVRCWiz.Text;
 using System.Windows;
+using OSCVRCWiz.Resources;
 
 namespace OSCVRCWiz.Addons
 {
@@ -95,12 +96,14 @@ namespace OSCVRCWiz.Addons
 
                     m_currentlyPlaying = await myClient.Player.GetCurrentlyPlaying(new PlayerCurrentlyPlayingRequest());
                     var m_testing = await myClient.Player.GetAvailableDevices();
+                  //  var m_testing2 = await myClient.Player.GetCurrentPlayback();
                     title = "";
                     var artist = "";
                     var duration = "";
                     var progress = "";
                     var durationHours = "";
                     var progressHours = "";
+                    var album = "";
                     //  var deviceType = "";
                     var deviceVolume = "";
                     if (m_currentlyPlaying != null)
@@ -120,6 +123,7 @@ namespace OSCVRCWiz.Addons
                             }
                             catch
                             {
+                               
 
                             }
 
@@ -142,6 +146,9 @@ namespace OSCVRCWiz.Addons
                             duration = new TimeSpan(0, 0, 0, 0, m_currentTrack.DurationMs).ToString(@"mm\:ss");
                             progressHours = new TimeSpan(0, 0, 0, 0, (int)m_currentlyPlaying.ProgressMs).ToString(@"hh\:mm\:ss");
                             durationHours = new TimeSpan(0, 0, 0, 0, m_currentTrack.DurationMs).ToString(@"hh\:mm\:ss");
+
+                            album = m_currentTrack.Album.Name.ToString();
+                            //var lyrics = m_testing2.
                         }
                     }
                     if ((lastSong != title ||  VoiceWizardWindow.MainFormGlobal.rjToggleButtonPeriodic.Checked == true) && !string.IsNullOrWhiteSpace(title) && title != "" && pauseSpotify != true)
@@ -177,13 +184,28 @@ namespace OSCVRCWiz.Addons
                         theString = theString.Replace("{progressHours}", progressHours);
                         theString = theString.Replace("{durationHours}", durationHours);
                         theString = theString.Replace("{bpm}", OSCListener.globalBPM);
+                        theString = theString.Replace("{bpmStats}", OSCListener.HREleveated);
                         theString = theString.Replace("{averageTrackerBattery}", OSCListener.globalAverageTrackerBattery.ToString());
+                        theString = theString.Replace("{TCharge}", OSCListener.trackerCharge);
                         theString = theString.Replace("{leftControllerBattery}", OSCListener.globalLeftControllerBattery.ToString());
                         theString = theString.Replace("{rightControllerBattery}", OSCListener.globalRightControllerBattery.ToString());
                         theString = theString.Replace("{averageControllerBattery}", OSCListener.globalAverageControllerBattery.ToString());
+                        theString = theString.Replace("{HMDBattery}", OSCListener.globalHMDBattery.ToString());
+                        theString = theString.Replace("{RCharge}", OSCListener.controllerChargeR);
+                        theString = theString.Replace("{LCharge}", OSCListener.controllerChargeL);
+                        theString = theString.Replace("{AVGCharge}", OSCListener.controllerChargeAVG);
+                        theString = theString.Replace("{HMDCharge}", OSCListener.controllerChargeHMD);
                         theString = theString.Replace("{pause}", spotifyPausedIndicator);
                         //theString = theString.Replace("{deviceType}", deviceType);
                         theString = theString.Replace("{spotifyVolume}", deviceVolume);
+                        theString = theString.Replace("{album}", album);
+
+                        theString = theString.Replace("{counter1}", OSC.counter1.ToString());
+                        theString = theString.Replace("{counter2}", OSC.counter2.ToString());
+                        theString = theString.Replace("{counter3}", OSC.counter3.ToString());
+                        theString = theString.Replace("{counter4}", OSC.counter4.ToString());
+                        theString = theString.Replace("{counter5}", OSC.counter5.ToString());
+                        theString = theString.Replace("{counter6}", OSC.counter6.ToString());
 
                         if (fullSongPauseCheck != progress && VoiceWizardWindow.MainFormGlobal.rjToggleButtonPlayPaused.Checked == true || VoiceWizardWindow.MainFormGlobal.rjToggleButtonPlayPaused.Checked == false)//stop outputting periodically if song paused
                         {
@@ -204,6 +226,10 @@ namespace OSCVRCWiz.Addons
                                 Task.Run(() => OutputText.outputVRChatSpeechBubbles(theString, "spotify")); //original
 
                             }
+                            if (VoiceWizardWindow.MainFormGlobal.rjToggleButtonOBSText.Checked == true && VoiceWizardWindow.MainFormGlobal.rjToggleButtonMedia4OBS.Checked == true)
+                            {
+                                OutputText.outputTextFile(theString);
+                            }
                         }
 
                         // lastSong = title;
@@ -215,16 +241,76 @@ namespace OSCVRCWiz.Addons
 
 
                 }
+                VoiceWizardWindow.MainFormGlobal.Invoke((MethodInvoker)delegate ()
+                {
+                    if (VoiceWizardWindow.MainFormGlobal.buttonSpotify.ForeColor != Color.Green)
+                    {
+                        VoiceWizardWindow.MainFormGlobal.buttonSpotify.ForeColor = Color.Green;
+                    }
+                });
             }
             catch (Exception ex)
             {
+                /*   if (ex.InnerException is APITooManyRequestsException)
+                   {
 
-                if (previousError !="The access token expired" && previousError != "String is empty or null (Parameter 'clientId')" && previousError != "Exception of type 'SpotifyAPI.Web.APITooManyRequestsException' was thrown.")//only say these once, dont spam them
+
+
+                       var APIException = (APITooManyRequestsException)ex.InnerException;
+                       OutputText.outputLog("Spotify Feature timed out for: "+ APIException.RetryAfter, Color.Red);
+
+                   }
+                   else
+                   {
+
+                       if (previousError != "The access token expired" && previousError != "String is empty or null (Parameter 'clientId')" && previousError != "Exception of type 'SpotifyAPI.Web.APITooManyRequestsException' was thrown.")//only say these once, dont spam them
+                       {
+                           OutputText.outputLog("Spotify API Exception: " + ex.Message, Color.Red);
+                           previousError = ex.Message.ToString();
+                       }
+                   } */
+
+                if (ex.Message== "Exception of type 'SpotifyAPI.Web.APITooManyRequestsException' was thrown.")//this will not work if they are translating their winform to a different language
                 {
-                    OutputText.outputLog("Spotify API Exception: " + ex.Message, Color.Red);
-                    previousError = ex.Message.ToString();
+
+
+
+                    var APIException = (APITooManyRequestsException)ex.InnerException;
+                    OutputText.outputLog("Spotify APITooManyRequests Exception:  timed out for: " + APIException.RetryAfter, Color.Red);
+
                 }
-             
+                else
+                {
+
+                    if (previousError != "The access token expired" && previousError != "String is empty or null (Parameter 'clientId')" && previousError != "Exception of type 'SpotifyAPI.Web.APIException' was thrown.")//only say these once, dont spam them
+                    {
+                        OutputText.outputLog("Spotify API Exception: " + ex.Message, Color.Red);
+                        previousError = ex.Message.ToString();
+                        try {
+
+                            OutputText.outputLog("Spotify API Inner Exception: " + ex.InnerException.Message, Color.Red);
+
+                        }
+                        catch { }
+                       // if (ex.Message.Contains("The access token expired"))
+                       // {
+                            OutputText.outputLog("[Spotify access token may be expired. Click the Connect Spotify button again.]", Color.DarkOrange);
+
+                        VoiceWizardWindow.MainFormGlobal.Invoke((MethodInvoker)delegate ()
+                        {
+                          
+
+                        if (VoiceWizardWindow.MainFormGlobal.buttonSpotify.ForeColor != Color.Red)
+                        {
+                            VoiceWizardWindow.MainFormGlobal.buttonSpotify.ForeColor = Color.Red;
+                        }
+                        });
+                        // }
+                    }
+                }
+                
+
+
 
             }
 
@@ -250,10 +336,17 @@ namespace OSCVRCWiz.Addons
                     theString = VoiceWizardWindow.MainFormGlobal.textBoxCustomSpot.Text.ToString();
 
                     theString = theString.Replace("{bpm}", OSCListener.globalBPM);
+                    theString = theString.Replace("{bpmStats}", OSCListener.HREleveated);
                     theString = theString.Replace("{averageTrackerBattery}", OSCListener.globalAverageTrackerBattery.ToString());
+                    theString = theString.Replace("{TCharge}", OSCListener.trackerCharge);
                     theString = theString.Replace("{leftControllerBattery}", OSCListener.globalLeftControllerBattery.ToString());
                     theString = theString.Replace("{rightControllerBattery}", OSCListener.globalRightControllerBattery.ToString());
                     theString = theString.Replace("{averageControllerBattery}", OSCListener.globalAverageControllerBattery.ToString());
+                    theString = theString.Replace("{HMDBattery}", OSCListener.globalHMDBattery.ToString());
+                    theString = theString.Replace("{RCharge}", OSCListener.controllerChargeR);
+                    theString = theString.Replace("{LCharge}", OSCListener.controllerChargeL);
+                    theString = theString.Replace("{AVGCharge}", OSCListener.controllerChargeAVG);
+                    theString = theString.Replace("{HMDCharge}", OSCListener.controllerChargeHMD);
                     theString = theString.Replace("{title}", WindowsMedia.mediaTitle);
                     theString = theString.Replace("{artist}", WindowsMedia.mediaArtist);
                     theString = theString.Replace("{source}", WindowsMedia.mediaSource);
@@ -271,6 +364,13 @@ namespace OSCVRCWiz.Addons
                      catch { theString = theString.Replace("{durationHours}", "-"); }*/
 
                     theString = theString.Replace("{spotifySymbol}", spotifySymbol);
+
+                    theString = theString.Replace("{counter1}", OSC.counter1.ToString());
+                    theString = theString.Replace("{counter2}", OSC.counter2.ToString());
+                    theString = theString.Replace("{counter3}", OSC.counter3.ToString());
+                    theString = theString.Replace("{counter4}", OSC.counter4.ToString());
+                    theString = theString.Replace("{counter5}", OSC.counter5.ToString());
+                    theString = theString.Replace("{counter6}", OSC.counter6.ToString());
                     if (VoiceWizardWindow.MainFormGlobal.rjToggleButtonPeriodic.Checked == true)
                     {
                         theString = theString.Replace("{pause}", spotifyPausedIndicator);
@@ -317,6 +417,10 @@ namespace OSCVRCWiz.Addons
                 Task.Run(() => OutputText.outputVRChatSpeechBubbles(text, "media")); //original
 
             }
+            if (VoiceWizardWindow.MainFormGlobal.rjToggleButtonOBSText.Checked == true && VoiceWizardWindow.MainFormGlobal.rjToggleButtonMedia4OBS.Checked == true)
+            {
+                OutputText.outputTextFile(text);
+            }
 
         }
 
@@ -331,7 +435,7 @@ namespace OSCVRCWiz.Addons
         }
 
 
-        public async Task SpotifyConnect(VoiceWizardWindow MainForm)
+        public static async Task SpotifyConnect()
         {
            // MainForm.getSpotify = true;
 

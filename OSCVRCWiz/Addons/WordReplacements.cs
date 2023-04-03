@@ -36,6 +36,10 @@ namespace Addons
                         if (VoiceWizardWindow.MainFormGlobal.checkedListBoxReplacements.GetItemCheckState(index) == CheckState.Checked)
                         {
                             //text = text.Replace(kvp.Key.ToString(), kvp.Value.ToString());
+
+                           
+                           // string pattern = @"[*#()\[\]]"; // Match any of these characters
+                           
                             text = Regex.Replace(text, kvp.Key.ToString(), kvp.Value.ToString(), RegexOptions.IgnoreCase);
                         }
                         
@@ -122,7 +126,7 @@ namespace Addons
                     }
                     catch (Exception ex)
                     {
-                        OutputText.outputLog("Error Loading Word Replacements / No Word Replacements Found", Color.Orange);
+                        OutputText.outputLog("Error Loading Word Replacements / No Word Replacements Found", Color.DarkOrange);
                     }
                 }
             }

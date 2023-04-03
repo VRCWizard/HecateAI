@@ -1,36 +1,39 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Amazon.Polly.Model;
+using Amazon.Runtime.Internal;
+using NAudio.Wave;
+using NAudio.Wave.SampleProviders;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Net.Http;
-using System.Threading.Tasks;
-//using CSCore;
-//using CSCore.MediaFoundation;
-using System.Media;
-using System.Net;
-//using CSCore.CoreAudioAPI;
+using Octokit;
+using Octokit.Internal;
+using OSCVRCWiz.Settings;
 using OSCVRCWiz.Text;
 using Resources;
-using NAudio.Wave;
-using Microsoft.VisualBasic;
-using Windows.Storage.Streams;
-using System.Collections;
-using Microsoft.Extensions.Primitives;
-using NAudio.Wave.SampleProviders;
-using VarispeedDemo.SoundTouch;
+using SpotifyAPI.Web.Http;
+using Swan.Formatters;
+using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
+using System.Net;
+using System.Net.Http.Json;
+using System.Text;
+using System.Threading.Tasks;
+using VarispeedDemo.SoundTouch;
+using Windows.Media.Protection.PlayReady;
+using static OSCVRCWiz.TTS.ElevenLabsTTS;
+using static SpotifyAPI.Web.SearchRequest;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace OSCVRCWiz.TTS
 {
-    public class TikTokTTS
+    public class ElevenLabsTTS
     {
-       // public static WaveOut TikTokOutput=null;
 
-        public static async Task TikTokTextAsSpeech(string text, CancellationToken ct = default)
+        private static readonly HttpClient client = new HttpClient();
+        public static Dictionary<string, string> voiceDict =null;
+        public static bool elevenFirstLoad = true;
+        public static async Task ElevenLabsTextAsSpeech(string text, CancellationToken ct = default)
         {
 
             // if ("tiktokvoice.mp3" == null)
@@ -41,28 +44,20 @@ namespace OSCVRCWiz.TTS
             {
                 voice = VoiceWizardWindow.MainFormGlobal.comboBox2.Text.ToString();
             });
-            System.Diagnostics.Debug.WriteLine("tiktok speech ran " + voice);
-            byte[] result = null;
+            System.Diagnostics.Debug.WriteLine("eleven speech ran " + voice);
             try
             {
-                result = await CallTikTokAPIAsync(text, voice);
-            }
-            catch (Exception ex)
-            {
-                OutputText.outputLog("[TikTok TTS Error: " + ex.Message + "]", Color.Red);
-             
-
-            }
-
-
-            try
-            {
+                var voiceID = voiceDict.FirstOrDefault(x => x.Value == voice).Key;
+                //  byte[] result = await CallTikTokAPIAsync(text, voice);
                 //  File.WriteAllBytes("TikTokTTS.mp3", result);          
                 //  Task.Run(() => PlayAudioHelper());
 
-                MemoryStream memoryStream = new MemoryStream(result);
+                MemoryStream memoryStream = new MemoryStream();
 
-             
+                Task<Stream> streamTask = CallElevenLabsAPIAsync(text, voiceID);
+                Stream stream = streamTask.Result;
+
+                AmazonPollyTTS.WriteSpeechToStream(stream, memoryStream);
 
 
 
@@ -81,6 +76,7 @@ namespace OSCVRCWiz.TTS
                 memoryStream2.Flush();
                 memoryStream2.Seek(0, SeekOrigin.Begin);// go to begining before copying
                 Mp3FileReader wav2 = new Mp3FileReader(memoryStream2);
+
 
 
                 var volume = 5;
@@ -111,7 +107,7 @@ namespace OSCVRCWiz.TTS
                 var wave32 = new WaveChannel32(wav, volumeFloat, 0f);  //1f volume is normal, keep pan at 0 for audio through both ears
                 VarispeedSampleProvider speedControl = new VarispeedSampleProvider(new WaveToSampleProvider(wave32), 100, new SoundTouchProfile(useTempo, false));
                 speedControl.PlaybackRate = pitchFloat;
-                var AnyOutput = new WaveOut();
+               var AnyOutput = new WaveOut();
                 AnyOutput.DeviceNumber = AudioDevices.getCurrentOutputDevice();
                 AnyOutput.Init(speedControl);
                 AnyOutput.Play();
@@ -132,7 +128,7 @@ namespace OSCVRCWiz.TTS
                     AnyOutput2.Play();
                     ct.Register(async () => AnyOutput2.Stop());
                 }
-              
+                
                 
 
 
@@ -151,9 +147,9 @@ namespace OSCVRCWiz.TTS
                 wav.Dispose();
                 wav = null;
                 memoryStream.Dispose();
-               // synthesizerLite.Dispose();
+              //  synthesizerLite.Dispose();
                 memoryStream = null;
-               // synthesizerLite = null;
+              //  synthesizerLite = null;
 
                 if (AnyOutput2 != null)
                 {
@@ -169,67 +165,117 @@ namespace OSCVRCWiz.TTS
                 }
                 ct = new();
 
-
                 Debug.WriteLine("disposed of all");
-
 
 
             }
             catch (Exception ex)
             {
-                OutputText.outputLog("[TikTok TTS *AUDIO* Error: " + ex.Message + "]", Color.Red);
-                if (ex.Message.Contains("An item with the same key has already been added"))
-                {
-                    OutputText.outputLog("[Looks like you may have 2 audio devices with the same name which causes an error in TTS Voice Wizard. To fix this go to Control Panel > Sound > right click on one of the devices > properties > rename the device.]", Color.DarkOrange);
-                }
+                OutputText.outputLog("[ElevenLabs TTS Error: " + ex.Message + "]", Color.Red);
 
             }
             //System.Diagnostics.Debug.WriteLine("tiktok speech ran"+result.ToString());
         }
 
-        public static async Task<byte[]> CallTikTokAPIAsync(string text, string voice)
+        public static async Task<Stream> CallElevenLabsAPIAsync(string textIn, string voice)
         {
 
+            //modified from https://github.com/connorbutler44/bingbot/blob/main/Service/ElevenLabsTextToSpeechService.cs
 
-            var url = "https://tiktok-tts.weilnet.workers.dev/api/generation";
 
-            var httpRequest = (HttpWebRequest)WebRequest.Create(url);
-            httpRequest.Method = "POST";
+            var url = $"https://api.elevenlabs.io/v1/text-to-speech/{voice}";
+            var apiKey = Settings1.Default.elevenLabsAPIKey;
 
-            httpRequest.ContentType = "application/json";
+            var request = new HttpRequestMessage(HttpMethod.Post, url);
 
-            var data = "{\"text\":\"" + text + "\",\"voice\":\"" + voice + "\"}";
+            request.Content = JsonContent.Create(new { text = textIn });
 
-            using (var streamWriter = new StreamWriter(httpRequest.GetRequestStream()))
+           
+            request.Headers.Add("xi-api-key", apiKey);
+            request.Headers.Add("Accept", "audio/mpeg");
+
+            //  var data = "{\"text\":\"" + text + "\"}";
+
+            HttpResponseMessage response = await client.SendAsync(request);
+
+            System.Diagnostics.Debug.WriteLine("Eleven Response:"+ response.StatusCode);
+
+
+
+           
+            return await response.Content.ReadAsStreamAsync();
+
+        }
+        public class Voice
+        {
+            public string voice_id { get; set; }
+            public string name { get; set; }
+        }
+        public class Voices
+        {
+            public List<Voice> voices { get; set; }
+        }
+
+
+        public static void CallElevenVoices()
+        {
+            try
             {
-                streamWriter.Write(data);
-            }
 
-            var httpResponse = (HttpWebResponse)httpRequest.GetResponse();
-            string audioInBase64 = "";
-            using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+                //modified from https://github.com/connorbutler44/bingbot/blob/main/Service/ElevenLabsTextToSpeechService.cs
+
+
+                var url = $"https://api.elevenlabs.io/v1/voices";
+            var apiKey = Settings1.Default.elevenLabsAPIKey;
+          
+
+
+
+
+        WebRequest request = WebRequest.Create(url);
+            request.Method = "GET";
+            request.Headers.Add("xi-api-key", apiKey);
+            using (WebResponse response = request.GetResponse())
             {
-                var result = streamReader.ReadToEnd();
-                var dataHere = JObject.Parse(result.ToString()).SelectToken("data").ToString();
-                audioInBase64 = dataHere.ToString();
 
-                System.Diagnostics.Debug.WriteLine(result);
+                using (Stream stream = response.GetResponseStream())
+                {
+
+                    using (var streamReader = new StreamReader(stream))
+                    {
+                        var result = streamReader.ReadToEnd();
+                        // var dataHere = JObject.Parse(result.ToString()).SelectToken("data").ToString();
+                        // audioInBase64 = dataHere.ToString();
+
+                        System.Diagnostics.Debug.WriteLine(result.ToString());
+                        var json = result.ToString();
+
+                        Voices voices = JsonConvert.DeserializeObject<Voices>(json);
+                       voiceDict = voices.voices.ToDictionary(v => v.voice_id, v => v.name);
+                    }
+
+                }
             }
+                /*foreach (KeyValuePair<string, string> kvp in dict)
+                  {
+                      Console.WriteLine("Voice ID: " + kvp.Key + ", Name: " + kvp.Value);
+                  }*/
 
-            System.Diagnostics.Debug.WriteLine(httpResponse.StatusCode);
+                // System.Diagnostics.Debug.WriteLine(audioInBase64);
+                // return Convert.FromBase64String(audioInBase64);
+                elevenFirstLoad = false;
+            }
+            catch (Exception ex)
+            {
+                OutputText.outputLog("[ElevenLabs Voice Load Error: " + ex.Message + "]", Color.Red);
+                OutputText.outputLog("[You appear to be using an incorrect ElevenLabs Key, make sure to follow the setup guide: https://github.com/VRCWizard/TTS-Voice-Wizard/wiki/ElevenLabs-TTS ]", Color.DarkOrange);
 
-
-
-            System.Diagnostics.Debug.WriteLine(audioInBase64);
-            return Convert.FromBase64String(audioInBase64);
+            }
 
         }
 
 
 
-        
+
     }
-
-
-
 }
