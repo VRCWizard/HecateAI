@@ -5,7 +5,7 @@ This project is meant to be a template for others to make chatbots using this mo
 TTS Voice Wizard modeified to use ChatGPT API, add key in settings
 
 
-You would download the code, add ur chatgpt api key and then make changes such as the input and output device would probably both be virtual cables if you want to listen to a game and output tts audio based on the recieved audio.
+You would download the code and compile the code with visual studio, add ur chatgpt api key (settings tab) and then make changes such as the input and output device would probably both be virtual cables if you want to listen to a game and output tts audio based on the recieved audio.
 
 Don't forget you can use TTS Voice Wizard's word replacements and voice commands with your chatbot.
 
