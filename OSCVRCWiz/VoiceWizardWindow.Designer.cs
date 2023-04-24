@@ -995,7 +995,7 @@
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Image = global::OSCVRCWiz.Properties.Resources.VRChatTTSBWBanner1;
+           // this.pictureBox2.Image = global::OSCVRCWiz.Properties.Resources.VRChatTTSBWBanner1;
             this.pictureBox2.Location = new System.Drawing.Point(20, 0);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox2.Name = "pictureBox2";
@@ -7399,7 +7399,7 @@
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(30)))), ((int)(((byte)(68)))));
-            this.pictureBox1.Image = global::OSCVRCWiz.Properties.Resources.TTSIcon1;
+           // this.pictureBox1.Image = global::OSCVRCWiz.Properties.Resources.TTSIcon1;
             this.pictureBox1.Location = new System.Drawing.Point(31, -9);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox1.Name = "pictureBox1";
