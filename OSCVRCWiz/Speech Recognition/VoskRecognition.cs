@@ -12,13 +12,14 @@ using Newtonsoft.Json.Linq;
 using NAudio.CoreAudioApi;
 using System.Windows.Threading;
 //using CSCore.SoundIn;
-using AIChatbotWiz.Settings;
+using OSCVRCWiz.Settings;
 using OSCVRCWiz.TTS;
 using TTS;
 using OSCVRCWiz.Text;
 using Resources;
 using NAudio.Wave;
 using System.Windows.Shapes;
+using System.Diagnostics;
 
 namespace OSCVRCWiz
 {
@@ -71,16 +72,16 @@ namespace OSCVRCWiz
             }
             else
             {
-                OutputText.outputLog("[No vosk model folder selected. When selecting you model foler make sure that the folder you select DIRECTLY contains the model files or the program will close!]", Color.Red);
-                MessageBox.Show("No vosk model folder selected. When selecting you model foler make sure that the folder you select DIRECTLY contains the model files or the program will close!");
+                OutputText.outputLog("[No vosk model folder selected. When selecting you model foler make sure that the folder you select DIRECTLY contains the model files or the program will crash!]", Color.Red);
+                MessageBox.Show("No vosk model folder selected. When selecting your model folder make sure that the folder you select DIRECTLY contains the model files or the program will crash!");
                 
             }
         }
         public static void AutoStopVoskRecog()
         {
-            if (voskEnabled == true)
+            if (voskEnabled == true || voskPause==true)
             {
-                Task.Run(() => VoskRecognition.stopVosk());
+                VoskRecognition.stopVosk();
                 voskEnabled = false;
                 voskPause= false;
 
@@ -119,7 +120,7 @@ namespace OSCVRCWiz
             {
                 voskEnabled = false;
                 OutputText.outputLog("[Vosk Failed to Start]", Color.Red);
-                OutputText.outputLog("[Reminder that Vosk only works on the x64 build of TTS Voice Wizard]", Color.Red);
+              //  OutputText.outputLog("[Reminder that Vosk only works on the x64 build of TTS Voice Wizard]", Color.Red);
                 MessageBox.Show("Vosk Error: " + ex.Message);
                 
 
@@ -128,7 +129,7 @@ namespace OSCVRCWiz
         }
         private static void runVoskNow(string path)
         {
-            OutputText.outputLog("[Starting Up Vosk...]");
+            OutputText.outputLog("[Starting Up Vosk...(don't click anything)]");
             model = new Model(path);
             rec = new VoskRecognizer(model, 48000f);
 
@@ -178,15 +179,35 @@ namespace OSCVRCWiz
         {
             try
             {
-                waveIn.StopRecording();
+                if (voskEnabled == true)
+                {
+                    pauseVosk();
+                    Debug.WriteLine("wavein stopped");
+                    waveIn = null;
+                    Debug.WriteLine("wavein nulled");
+                }
+
+                // model = null;
+             //  rec = null;
+            //    Debug.WriteLine("rec nulled");
                // model = null;
-                rec = null;
-                rec?.Dispose();
+                // Debug.WriteLine("model nulled");
+
+               
                 model?.Dispose();
-                OutputText.outputLog("[Vosk Stopped Listening]");
+                Debug.WriteLine("model disposed");
+                
+                rec?.Dispose();
+                Debug.WriteLine("rec disposed");
+
+                //  model = null;
+                // Debug.WriteLine("model nulled");
+                OutputText.outputLog("[Vosk Stopped Listening (resources freed)]");
+               // OutputText.outputLog("[Vosk Resources may not have properly been disposed (memory use still high in Task Manager). Consider restarting TTS Voice Wizard.]",Color.Red);
             }
             catch (Exception ex)
             {
+                
                 MessageBox.Show(ex.Message);
             }
 
@@ -197,7 +218,8 @@ namespace OSCVRCWiz
         {
             try
             {
-                waveIn.StopRecording();
+                waveIn?.StopRecording();
+                
                 // model = null;
                 //  rec = null;
                 //   rec?.Dispose();
@@ -217,7 +239,8 @@ namespace OSCVRCWiz
         {
             try
             {
-                waveIn.StartRecording();
+
+                waveIn?.StartRecording();
                 // model = null;
                 //  rec = null;
                 //   rec?.Dispose();

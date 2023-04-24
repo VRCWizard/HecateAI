@@ -157,7 +157,7 @@ namespace OSCVRCWiz
                 {
                     Console.WriteLine(eventArgs.Result.Text);
                    // var ot = new OutputText(); 
-                    Task.Run(() => OutputText.outputLog("[Speech Recognition Canceled (Translating): " + eventArgs.Result.Text + " Reason: " + eventArgs.Result.Reason.ToString() + " Error Details: " + eventArgs.ErrorDetails.ToString() + "]", Color.Red));
+                    Task.Run(() => OutputText.outputLog("[Azure Speech Recognition Canceled (Translating): " + eventArgs.Result.Text + " Reason: " + eventArgs.Result.Reason.ToString() + " Error Details: " + eventArgs.ErrorDetails.ToString() + "]", Color.Red));
                 };
 
                 translationRecognizer1.Recognized += (sender, eventArgs) =>
@@ -178,9 +178,11 @@ namespace OSCVRCWiz
                 };
                 speechRecognizer1.Canceled += (sender, eventArgs) =>
                 {
-                    Console.WriteLine(eventArgs.Result.Text);
+                   // Console.WriteLine(eventArgs.Result.Text);
                    // var ot = new OutputText();
-                    Task.Run(() => OutputText.outputLog("[Speech Recognition Canceled: " + eventArgs.Result.Text + " Reason: " + eventArgs.Result.Reason.ToString() + " Error Details: " + eventArgs.ErrorDetails.ToString() + "]", Color.Red));
+                    Task.Run(() => OutputText.outputLog("[Azure Speech Recognition Canceled: " + eventArgs.Result.Text + " Reason: " + eventArgs.Result.Reason.ToString() + " Error Details: " + eventArgs.ErrorDetails.ToString() + "]", Color.Red));
+                    OutputText.outputLog("[If this issue occurs often try searching the discord server. The solution has likely already been documented]", Color.DarkOrange);
+
                 };
                 speechRecognizer1.Recognized += (sender, eventArgs) =>
                 {
@@ -220,7 +222,9 @@ namespace OSCVRCWiz
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Speech Setup Failed: Make sure that you have setup your Azure Key and Region in the Provider tab (click the 'apply' buttons to apply changes) Reason:" + ex.Message.ToString());
+               // MessageBox.Show("Speech Setup Failed: Make sure that you have setup your Azure Key and Region in the Provider tab (click the 'apply' buttons to apply changes) Reason:" + ex.Message.ToString());
+                OutputText.outputLog("[Azure Speech Setup Failed: " + ex.Message + "]", Color.Red);
+                OutputText.outputLog("[ Make sure that you have setup your Azure Key and Region in the Provider tab (click the 'apply' buttons to apply changes). Make sure that you have an input and output device selected in Settings > Audio]", Color.DarkOrange);
 
             }
         }
@@ -271,7 +275,7 @@ namespace OSCVRCWiz
             }
             catch (Exception ex)
             {
-                MessageBox.Show("STTTS Failed: " + ex.Message.ToString());
+                MessageBox.Show("Azure STTTS Failed: " + ex.Message.ToString());
 
             }
         }
@@ -335,7 +339,7 @@ namespace OSCVRCWiz
            }
             catch (Exception ex)
             {
-                OutputText.outputLog("Translation STTTS Failed: Most likely your voice was not picked up by your microphone. Reason: " + ex.Message.ToString());
+                OutputText.outputLog("Azure Translation STTTS Failed: Most likely your voice was not picked up by your microphone. Reason: " + ex.Message.ToString());
 
             }
         }

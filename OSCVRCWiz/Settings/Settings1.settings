@@ -275,5 +275,152 @@
     <Setting Name="saveAutoRefreshKat" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="normalHotKey" Type="System.String" Scope="User">
+      <Value Profile="(Default)">G</Value>
+    </Setting>
+    <Setting Name="modHotKey" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Control</Value>
+    </Setting>
+    <Setting Name="yourAWSKey" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="yourAWSSecret" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="yourAWSRegion" Type="System.String" Scope="User">
+      <Value Profile="(Default)">us-east-1</Value>
+    </Setting>
+    <Setting Name="elevenLabsAPIKey" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="whisperModel" Type="System.String" Scope="User">
+      <Value Profile="(Default)">no model selected</Value>
+    </Setting>
+    <Setting Name="VRCListemOnStart" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="VRCSpamLog" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="VRCAFK" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="VRCPort" Type="System.String" Scope="User">
+      <Value Profile="(Default)">9001</Value>
+    </Setting>
+    <Setting Name="AFKMsg" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Out for Lunch 🥪</Value>
+    </Setting>
+    <Setting Name="Counter1Para" Type="System.String" Scope="User">
+      <Value Profile="(Default)">/avatar/parameters/Boop</Value>
+    </Setting>
+    <Setting Name="Counter2Para" Type="System.String" Scope="User">
+      <Value Profile="(Default)">/avatar/parameters/HighFive</Value>
+    </Setting>
+    <Setting Name="Counter3Para" Type="System.String" Scope="User">
+      <Value Profile="(Default)">/avatar/parameters/Bonk</Value>
+    </Setting>
+    <Setting Name="Counter4Para" Type="System.String" Scope="User">
+      <Value Profile="(Default)">/avatar/parameters/Slap</Value>
+    </Setting>
+    <Setting Name="Counter1Msg" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Times Booped: {counter}</Value>
+    </Setting>
+    <Setting Name="Counter2Msg" Type="System.String" Scope="User">
+      <Value Profile="(Default)">HighFive Counter: {counter}</Value>
+    </Setting>
+    <Setting Name="Counter3Msg" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Times Bonked: {counter}</Value>
+    </Setting>
+    <Setting Name="Counter4Msg" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Times Slapped: {counter}</Value>
+    </Setting>
+    <Setting Name="VRCOnRecieve" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="OBS4Media" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="OBSTextFile" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="Counter5Para" Type="System.String" Scope="User">
+      <Value Profile="(Default)">/avatar/parameters/Something</Value>
+    </Setting>
+    <Setting Name="Counter6Para" Type="System.String" Scope="User">
+      <Value Profile="(Default)">/avatar/parameters/AnothaOne</Value>
+    </Setting>
+    <Setting Name="Counter5Msg" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Counter: {counter}</Value>
+    </Setting>
+    <Setting Name="Counter6Msg" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Counter: {counter}</Value>
+    </Setting>
+    <Setting Name="SaveCounter" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="Counter1" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="Counter2" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="Counter3" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="Counter4" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="Counter5" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="Counter6" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="FilterNoiseWhisper" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="modHotkeyStop" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="normalHotkeyStop" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="WindowsMediaDisable" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="SpeakerName2" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Default</Value>
+    </Setting>
+    <Setting Name="pitchNew" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="volumeNew" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="speedNew" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="use2ndDevice" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="forwardData" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="minDuration" Type="System.String" Scope="User">
+      <Value Profile="(Default)">1.0</Value>
+    </Setting>
+    <Setting Name="maxDuration" Type="System.String" Scope="User">
+      <Value Profile="(Default)">8.0</Value>
+    </Setting>
+    <Setting Name="dropStartSilence" Type="System.String" Scope="User">
+      <Value Profile="(Default)">0.25</Value>
+    </Setting>
+    <Setting Name="pauseDuration" Type="System.String" Scope="User">
+      <Value Profile="(Default)">1.0</Value>
+    </Setting>
+    <Setting Name="aprilFools2023" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AIChatbotWiz.Settings {
+namespace OSCVRCWiz.Settings {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -1112,6 +1112,594 @@ namespace AIChatbotWiz.Settings {
             }
             set {
                 this["saveAutoRefreshKat"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("G")]
+        public string normalHotKey {
+            get {
+                return ((string)(this["normalHotKey"]));
+            }
+            set {
+                this["normalHotKey"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Control")]
+        public string modHotKey {
+            get {
+                return ((string)(this["modHotKey"]));
+            }
+            set {
+                this["modHotKey"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string yourAWSKey {
+            get {
+                return ((string)(this["yourAWSKey"]));
+            }
+            set {
+                this["yourAWSKey"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string yourAWSSecret {
+            get {
+                return ((string)(this["yourAWSSecret"]));
+            }
+            set {
+                this["yourAWSSecret"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("us-east-1")]
+        public string yourAWSRegion {
+            get {
+                return ((string)(this["yourAWSRegion"]));
+            }
+            set {
+                this["yourAWSRegion"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string elevenLabsAPIKey {
+            get {
+                return ((string)(this["elevenLabsAPIKey"]));
+            }
+            set {
+                this["elevenLabsAPIKey"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("no model selected")]
+        public string whisperModel {
+            get {
+                return ((string)(this["whisperModel"]));
+            }
+            set {
+                this["whisperModel"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool VRCListemOnStart {
+            get {
+                return ((bool)(this["VRCListemOnStart"]));
+            }
+            set {
+                this["VRCListemOnStart"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool VRCSpamLog {
+            get {
+                return ((bool)(this["VRCSpamLog"]));
+            }
+            set {
+                this["VRCSpamLog"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool VRCAFK {
+            get {
+                return ((bool)(this["VRCAFK"]));
+            }
+            set {
+                this["VRCAFK"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("9001")]
+        public string VRCPort {
+            get {
+                return ((string)(this["VRCPort"]));
+            }
+            set {
+                this["VRCPort"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Out for Lunch 🥪")]
+        public string AFKMsg {
+            get {
+                return ((string)(this["AFKMsg"]));
+            }
+            set {
+                this["AFKMsg"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("/avatar/parameters/Boop")]
+        public string Counter1Para {
+            get {
+                return ((string)(this["Counter1Para"]));
+            }
+            set {
+                this["Counter1Para"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("/avatar/parameters/HighFive")]
+        public string Counter2Para {
+            get {
+                return ((string)(this["Counter2Para"]));
+            }
+            set {
+                this["Counter2Para"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("/avatar/parameters/Bonk")]
+        public string Counter3Para {
+            get {
+                return ((string)(this["Counter3Para"]));
+            }
+            set {
+                this["Counter3Para"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("/avatar/parameters/Slap")]
+        public string Counter4Para {
+            get {
+                return ((string)(this["Counter4Para"]));
+            }
+            set {
+                this["Counter4Para"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Times Booped: {counter}")]
+        public string Counter1Msg {
+            get {
+                return ((string)(this["Counter1Msg"]));
+            }
+            set {
+                this["Counter1Msg"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("HighFive Counter: {counter}")]
+        public string Counter2Msg {
+            get {
+                return ((string)(this["Counter2Msg"]));
+            }
+            set {
+                this["Counter2Msg"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Times Bonked: {counter}")]
+        public string Counter3Msg {
+            get {
+                return ((string)(this["Counter3Msg"]));
+            }
+            set {
+                this["Counter3Msg"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Times Slapped: {counter}")]
+        public string Counter4Msg {
+            get {
+                return ((string)(this["Counter4Msg"]));
+            }
+            set {
+                this["Counter4Msg"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool VRCOnRecieve {
+            get {
+                return ((bool)(this["VRCOnRecieve"]));
+            }
+            set {
+                this["VRCOnRecieve"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool OBS4Media {
+            get {
+                return ((bool)(this["OBS4Media"]));
+            }
+            set {
+                this["OBS4Media"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool OBSTextFile {
+            get {
+                return ((bool)(this["OBSTextFile"]));
+            }
+            set {
+                this["OBSTextFile"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("/avatar/parameters/Something")]
+        public string Counter5Para {
+            get {
+                return ((string)(this["Counter5Para"]));
+            }
+            set {
+                this["Counter5Para"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("/avatar/parameters/AnothaOne")]
+        public string Counter6Para {
+            get {
+                return ((string)(this["Counter6Para"]));
+            }
+            set {
+                this["Counter6Para"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Counter: {counter}")]
+        public string Counter5Msg {
+            get {
+                return ((string)(this["Counter5Msg"]));
+            }
+            set {
+                this["Counter5Msg"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Counter: {counter}")]
+        public string Counter6Msg {
+            get {
+                return ((string)(this["Counter6Msg"]));
+            }
+            set {
+                this["Counter6Msg"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool SaveCounter {
+            get {
+                return ((bool)(this["SaveCounter"]));
+            }
+            set {
+                this["SaveCounter"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int Counter1 {
+            get {
+                return ((int)(this["Counter1"]));
+            }
+            set {
+                this["Counter1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int Counter2 {
+            get {
+                return ((int)(this["Counter2"]));
+            }
+            set {
+                this["Counter2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int Counter3 {
+            get {
+                return ((int)(this["Counter3"]));
+            }
+            set {
+                this["Counter3"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int Counter4 {
+            get {
+                return ((int)(this["Counter4"]));
+            }
+            set {
+                this["Counter4"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int Counter5 {
+            get {
+                return ((int)(this["Counter5"]));
+            }
+            set {
+                this["Counter5"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int Counter6 {
+            get {
+                return ((int)(this["Counter6"]));
+            }
+            set {
+                this["Counter6"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool FilterNoiseWhisper {
+            get {
+                return ((bool)(this["FilterNoiseWhisper"]));
+            }
+            set {
+                this["FilterNoiseWhisper"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string modHotkeyStop {
+            get {
+                return ((string)(this["modHotkeyStop"]));
+            }
+            set {
+                this["modHotkeyStop"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string normalHotkeyStop {
+            get {
+                return ((string)(this["normalHotkeyStop"]));
+            }
+            set {
+                this["normalHotkeyStop"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool WindowsMediaDisable {
+            get {
+                return ((bool)(this["WindowsMediaDisable"]));
+            }
+            set {
+                this["WindowsMediaDisable"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Default")]
+        public string SpeakerName2 {
+            get {
+                return ((string)(this["SpeakerName2"]));
+            }
+            set {
+                this["SpeakerName2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        public int pitchNew {
+            get {
+                return ((int)(this["pitchNew"]));
+            }
+            set {
+                this["pitchNew"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        public int volumeNew {
+            get {
+                return ((int)(this["volumeNew"]));
+            }
+            set {
+                this["volumeNew"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        public int speedNew {
+            get {
+                return ((int)(this["speedNew"]));
+            }
+            set {
+                this["speedNew"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool use2ndDevice {
+            get {
+                return ((bool)(this["use2ndDevice"]));
+            }
+            set {
+                this["use2ndDevice"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool forwardData {
+            get {
+                return ((bool)(this["forwardData"]));
+            }
+            set {
+                this["forwardData"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1.0")]
+        public string minDuration {
+            get {
+                return ((string)(this["minDuration"]));
+            }
+            set {
+                this["minDuration"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("8.0")]
+        public string maxDuration {
+            get {
+                return ((string)(this["maxDuration"]));
+            }
+            set {
+                this["maxDuration"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.25")]
+        public string dropStartSilence {
+            get {
+                return ((string)(this["dropStartSilence"]));
+            }
+            set {
+                this["dropStartSilence"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1.0")]
+        public string pauseDuration {
+            get {
+                return ((string)(this["pauseDuration"]));
+            }
+            set {
+                this["pauseDuration"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool aprilFools2023 {
+            get {
+                return ((bool)(this["aprilFools2023"]));
+            }
+            set {
+                this["aprilFools2023"] = value;
             }
         }
     }
